@@ -45,7 +45,7 @@
         <span class="sound">tink</span>
       </div>
       <div class="random">
-        <button data-key="82">Random sounds</button>
+        <button data-key="82">Random sounds <span class="progress"></span></button>
       </div>
     </div>
 
@@ -60,7 +60,11 @@
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
     <script>
-      // Choose random image for background
+
+      // Get progress span
+      let progSpan = document.querySelector("span.progress");
+
+      // Choose random image for background and style it
       const bgImages = [
         "imgs/djset.jpg",
         "imgs/djset_crowd.jpg",
@@ -68,8 +72,8 @@
       ];
       const bgImage = bgImages[randInt(0, bgImages.length - 1)];
       let htmlElem = document.querySelector("html");
-      htmlElem.style.background = `url(${bgImage}) bottom center`;
-
+      htmlElem.style.backgroundImage = `url(${bgImage})`;
+      
       // Preload audio keys available
       let audioKeys = [];
       document.querySelectorAll(`audio[data-key]`).forEach(audio => {
@@ -104,7 +108,8 @@
         let i = 0;
 
         function playRandomAudioKey() {
-          if (i > n) {
+          if (i >= n) {
+            progSpan.innerHTML = "";
             return;
           }
           // Select random key/sound
@@ -115,6 +120,7 @@
           playAudio(audioKey);
           setTimeout(playRandomAudioKey, timeout);
           i++;
+          progSpan.innerHTML = `(${i}/${n})`;
         }
 
         playRandomAudioKey();

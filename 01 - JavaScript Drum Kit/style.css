@@ -1,7 +1,9 @@
 html {
   font-size: 10px;
-  background: url(imgs/people.jpg) bottom center;
+  background-image: url(imgs/people.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 body,
