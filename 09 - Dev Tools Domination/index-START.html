@@ -3,9 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <title>Console Tricks!</title>
+    <style>
+      kbd {
+        background-color: #eee;
+        border-radius: 3px;
+        border: 1px solid #b4b4b4;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+          0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+        color: #333;
+        display: inline-block;
+        font-size: 0.85em;
+        font-weight: 700;
+        line-height: 1;
+        padding: 2px 4px;
+        white-space: nowrap;
+      }
+      body {
+        color: white;
+        background: black;
+      }
+      .trigger {
+        font-size: 1.5em;
+        color: lightblue;
+      }
+    </style>
   </head>
   <body>
-    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <p class="trigger" onClick="makeGreen()">
+      Click me to trigger attribute changes!
+    </p>
+    <p>
+      Setup a breakpoint on attribute changes on the developer menu of the
+      browser and click the text above!<br />
+      Other than that, this challenge works mostly with the console, open it
+      (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd>) for the results!
+    </p>
 
     <script>
       const dogs = [{ name: "Snickers", age: 2 }, { name: "hugo", age: 8 }];
@@ -17,36 +49,46 @@
       }
 
       // Regular
-      console.log("hello");
+      console.log("Hello, i am a regular log");
 
       // Interpolated
-      console.log("Hello I am a %s string!", "💩");
+      console.log("Hello, i am a formated %s string!", "💩");
 
       // Styled
-      // console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue')
+      console.log(
+        "%c Styled text!",
+        "color: white; font-size:18px; background:black; text-shadow: 1x 1px 0 white"
+      );
 
       // warning!
-      console.warn("OH NOOO");
+      console.warn("My great warning about something.");
 
       // Error :|
-      console.error("Shit!");
+      console.error("My custom error about something that went wrong!");
 
       // Info
-      console.info("Crocodiles eat 3-4 people per year");
+      console.info("Here's a fact: Crocodiles eat 3-4 people per year");
 
       // Testing
       const p = document.querySelector("p");
-
-      console.assert(p.classList.contains("ouch"), "That is wrong!");
+      console.assert(
+        p.classList.contains("ouch"),
+        "the classlist of p does not contain 'ouch'!"
+      );
 
       // clearing
-      console.clear();
+      //console.clear();
 
       // Viewing DOM Elements
+      console.log(
+        "%c Printing DOM Elements:",
+        "color: white; font-size:18px; background:black; text-shadow: 1x 1px 0 white"
+      );
+
       console.log(p);
       console.dir(p);
 
-      console.clear();
+      //console.clear();
 
       // Grouping together
       dogs.forEach(dog => {
@@ -58,30 +100,28 @@
       });
 
       // counting
+      console.count("Steve");
+      console.count("Steve");
+      console.count("Steve");
+      console.count("Creeper");
+      console.count("Creeper");
 
-      console.count("Wes");
-      console.count("Wes");
-      console.count("Steve");
-      console.count("Steve");
-      console.count("Wes");
-      console.count("Steve");
-      console.count("Wes");
-      console.count("Steve");
-      console.count("Steve");
-      console.count("Steve");
-      console.count("Steve");
-      console.count("Steve");
+      // table
+      console.log(
+        "%c A table:",
+        "color: white; font-size:18px; background:black; text-shadow: 1x 1px 0 white; padding-right: 5px;"
+      );
+      console.table(dogs);
 
       // timing
+      console.log("Timing data fetch");
       console.time("fetching data");
-      fetch("https://api.github.com/users/wesbos")
+      fetch("https://api.github.com/users/andrerfcsantos")
         .then(data => data.json())
         .then(data => {
           console.timeEnd("fetching data");
-          console.log(data);
+          console.log("Here's the data:", data);
         });
-
-      console.table(dogs);
     </script>
   </body>
 </html>
