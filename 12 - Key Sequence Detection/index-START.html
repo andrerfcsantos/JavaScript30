@@ -15,7 +15,7 @@
       const pressed = [];
       const secretCode = "secret";
       const htmlElem = document.querySelector("html");
-      const h1ELem = document.querySelector("h1");
+      const h1Elem = document.querySelector("h1");
 
       window.addEventListener("keyup", e => {
         pressed.push(e.key);
@@ -26,7 +26,7 @@
         if (pressed.join("").includes(secretCode)) {
           cornify_add();
           htmlElem.style.background = "violet";
-          h1ELem.style.textShadow = "0px 0px 6px blue";
+          h1Elem.style.textShadow = "0px 0px 6px blue";
         }
       });
     </script>
