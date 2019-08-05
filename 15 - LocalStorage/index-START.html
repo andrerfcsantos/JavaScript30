@@ -63,7 +63,10 @@
       const unSelectAllButton = document.querySelector(".unSelectAll");
       const clearAllButton = document.querySelector(".clearAll");
 
-      let items = JSON.parse(localStorage.getItem("items")) || [];
+      let items = JSON.parse(localStorage.getItem("items")) || [
+        { text: "fish", done: false },
+        { text: "tacos", done: false }
+      ];
 
       function addItem(e) {
         e.preventDefault();
@@ -114,7 +117,7 @@
 
       function clearAll() {
         items = [];
-        localStorage.removeItem("items");
+        localStorage.setItem("items", "[]");
         populateList(items, itemsList);
       }
 
